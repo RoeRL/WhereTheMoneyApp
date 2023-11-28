@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#D7FFE4"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/wrapperDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded_corner_view"/>
+
+
+    <TextView
+        android:id="@+id/welcoming"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Selamat Datang \nKembali, "
+        android:textColor="@color/black"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="55dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="470dp"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp"
+        android:layout_alignTop="@+id/wrapperDashboard"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/moneyValue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="0"
+        android:textColor="@color/black"
+        android:layout_gravity="center_vertical"
+        android:layout_alignRight="@+id/wrapperDashboard"
+        android:layout_alignLeft="@+id/wrapperDashboard"
+        android:layout_alignBottom="@+id/wrapperDashboard"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="20dp"
+        android:textSize="18dp"
+        android:layout_alignTop="@+id/wrapperDashboard"
+        android:layout_centerInParent="true"/>
+
+
+    <Button
+        android:id="@+id/incomeButton"
+        android:text="Income"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="375dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="220dp"
+        android:layout_marginLeft="25dp"
+        android:backgroundTint="#48DC57"/>
+
+    <Button
+        android:id="@+id/expenseButton"
+        android:text="Expenses"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="375dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="220dp"
+        android:backgroundTint="#DC4848"/>
+
+
+
+
+
+
+</RelativeLayout>
