@@ -22,9 +22,9 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        emailLogin = findViewById<EditText>(R.id.emailForm)
-        passLogin = findViewById<EditText>(R.id.passwordForm)
-        loginButton = findViewById<Button>(R.id.loginButton)
+        emailLogin = findViewById(R.id.emailForm)
+        passLogin = findViewById(R.id.passwordForm)
+        loginButton = findViewById(R.id.loginButton)
 
         //TODO: Get Database Login Information[email, password]
         //TODO: Check If Login Input is equal with the login information from database
