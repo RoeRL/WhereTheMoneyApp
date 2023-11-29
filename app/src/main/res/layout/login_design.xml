@@ -1,60 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/myprimary">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="50dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_wtm_foreground"></ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WhereMy
+                Money"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="50dp"></TextView>
 
-    <View
-        android:id="@+id/rectangle_1"
-        android:layout_width="600dp"
-        android:layout_height="669dp"
-        android:layout_marginTop="-160dp"
-        android:background="#31900F"
-        android:rotation="-80" />
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@+id/rectangle_1"
-        android:layout_marginBottom="50dp"
-        android:text="@string/app_name"
-        android:textSize="40sp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textStyle="bold"/>
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/rectangle_1"
-        android:layout_marginTop="250dp"
-        android:background="@mipmap/ic_wtm_foreground"/>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:cardCornerRadius="20dp"
+            android:layout_marginBottom="-20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:padding="28dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="40dp"
 
-    <EditText
-        android:id="@+id/m_emailForm"
-        android:hint="Email"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"/>
+                    android:textColor="@color/myprimary"
+                    android:text="welcome,">
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="please input your account"
+                    android:alpha="0,7">
+                </TextView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"></View>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="email"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="email"></TextView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="login"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="register"
+                    android:layout_marginBottom="28dp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/m_passwordForm"
-        android:hint="Password"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="550dp"/>
-
-    <Button
-        android:id="@+id/m_loginButton"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#39900F"
-        android:layout_centerHorizontal="true"
-        android:text="Login"
-        android:layout_marginTop="600dp"/>
+    </RelativeLayout>
 
 </RelativeLayout>
