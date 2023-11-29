@@ -52,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="please input your account"
-                    android:alpha="0,7">
+                    android:alpha="0.7">
                 </TextView>
                 <View
                     android:layout_width="match_parent"
@@ -61,12 +61,12 @@
                     android:hint="Email"
                     android:id="@+id/emailForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="48dp"/>
                 <EditText
                     android:hint="Password"
                     android:id="@+id/passwordForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="48dp"/>
                 <Button
                     android:id="@+id/loginButton"
                     android:layout_width="match_parent"
