@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/mysecondary"
+    android:background="@color/white"
     tools:context=".MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:text="your money"
                 android:textSize="30dp"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/moneyValue"
                 android:layout_width="match_parent"
@@ -30,6 +30,68 @@
                 android:text="0"
                 android:textSize="50dp"
                 android:textAlignment="center"/>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/budget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20000"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:textColor="@color/green"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Income"
+                            android:textSize="17sp"
+                            android:textAllCaps="true"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/expense"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10000"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:textColor="@color/red"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expense"
+                            android:textSize="17sp"
+                            android:textAllCaps="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_margin="10dp"
-                    android:backgroundTint="@color/myprimary"/>
+                    android:backgroundTint="@color/green"/>
                 <Button
                     android:id="@+id/expenseButton"
                     android:text="Expense"

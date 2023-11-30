@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
     }
+
+    private fun updateDashboard(){
+        val totalPrice : Double = transactions.map{it.itemValue}.sum()
+        val incomePrice : Double = transactions.filter { it.itemValue>0 }.map{it.itemValue}.sum()
+    }
 }
