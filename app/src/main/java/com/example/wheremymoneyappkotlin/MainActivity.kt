@@ -5,40 +5,33 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var transactions : ArrayList<HistoryTransaction>
+    private lateinit var adapter: HistoryTransactionAdapater
+    private lateinit var linearLayoutManager : LinearLayoutManager
+
+    private lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val increaseButton = findViewById<Button>(R.id.incomeButton)
-        val expenseButton = findViewById<Button>(R.id.expenseButton)
+        transactions = arrayListOf(
+            HistoryTransaction("Pisang", -40000.00),
+            HistoryTransaction("Duit", 40000.00),
+            HistoryTransaction("Gedhang", -90000.00)
 
-        val valueMoney = findViewById<TextView>(R.id.moneyValue)
+        )
 
-        //Get initMoney Data from database:
-        var initMoney = 2000
+        adapter = HistoryTransactionAdapater(transactions)
+        linearLayoutManager = LinearLayoutManager(this)
 
-
-        valueMoney.text = initMoney.toString()
-        increaseButton.setOnClickListener {
-            initMoney += 200
-            //input Data to Database
-            valueMoney.text = initMoney.toString()
-        }
-
-        expenseButton.setOnClickListener {
-            initMoney -= 100
-            //Input Data to database
-            valueMoney.text = initMoney.toString()
-        }
-
-
-
-
-
-        //TODO: Make a Input Button Function and Expense
-        //TODO: Layout For Input Data, Expense Data
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = adapter
 
     }
 }
