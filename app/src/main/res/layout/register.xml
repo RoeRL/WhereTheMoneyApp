@@ -43,38 +43,34 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="20dp"></View>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="email"/>
+
                 <EditText
+                    android:id="@+id/registEmail"
+                    android:hint="Email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="username"/>
+                    android:layout_height="48dp"/>
+
                 <EditText
+                    android:id="@+id/registUsername"
+                    android:hint="Username"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="password"/>
+                    android:layout_height="48dp"/>
+
                 <EditText
+                    android:id="@+id/registPassword"
+                    android:hint="Password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:inputType="textPassword"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="confirm password"
-                    ></TextView>
+
                 <EditText
+                    android:id="@+id/registConfirmPassword"
+                    android:hint="Confirm Password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:inputType="textPassword"/>
                 <Button
+                    android:id="@+id/registButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="register"/>
