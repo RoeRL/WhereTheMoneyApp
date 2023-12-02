@@ -75,11 +75,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
-
-
-
+            <Button
+                android:layout_marginTop="50dp"
+                android:id="@+id/inputIncomeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Input Income"
+                android:textSize="24sp"/>
+        </RelativeLayout>
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

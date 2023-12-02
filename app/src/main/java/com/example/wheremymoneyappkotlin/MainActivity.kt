@@ -1,5 +1,6 @@
 package com.example.wheremymoneyappkotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var transactions : ArrayList<HistoryTransaction>
     private lateinit var adapter: HistoryTransactionAdapater
     private lateinit var linearLayoutManager : LinearLayoutManager
+    private lateinit var incomeButton : Button
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var balanceValue: TextView
@@ -41,6 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         updateDashboard()
 
+        incomeButton = findViewById(R.id.incomeButton)
+
+
+        incomeButton.setOnClickListener {
+            val intent = Intent(this, InputTransactionActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun formatBalance(value: Double): String {
