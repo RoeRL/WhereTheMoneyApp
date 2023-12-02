@@ -1,5 +1,4 @@
 package com.example.wheremymoneyappkotlin
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -60,6 +59,5 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-
     }
 }
