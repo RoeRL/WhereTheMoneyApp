@@ -61,5 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
+        //TODO: Sign in with registered acc
+
     }
 }
