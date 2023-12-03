@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         incomeButton.setOnClickListener {
             val intent = Intent(this, InputTransactionActivity::class.java)
             startActivity(intent)
+            
         }
     }
 
