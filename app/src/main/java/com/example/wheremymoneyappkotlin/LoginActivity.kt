@@ -1,30 +1,33 @@
 package com.example.wheremymoneyappkotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class LoginActivity : AppCompatActivity() {
-
+    private lateinit var database: FirebaseDatabase
     private lateinit var emailLogin: EditText
     private lateinit var passLogin: EditText
     private lateinit var loginButton: Button
-
-    private lateinit var mAuth: FirebaseAuth
+    private lateinit var registerButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_design)
+        setContentView(R.layout.activity_login)
 
-        mAuth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
 
         emailLogin = findViewById(R.id.emailForm)
         passLogin = findViewById(R.id.passwordForm)
         loginButton = findViewById(R.id.loginButton)
+        registerButton = findViewById(R.id.registerButton)
 
         //TODO: Get Database Login Information[email, password]
         //TODO: Check If Login Input is equal with the login information from database
@@ -32,36 +35,41 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             userLoginFunction()
         }
+
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
     private fun userLoginFunction(){
-        val email = emailLogin.text.toString().trim()
-        val password = passLogin.text.toString().trim()
+        val databaseReference = database.reference.child("user_list")
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var doneLogin = false
 
 
-        if (email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this@LoginActivity, "Kolom Login atau Password Kosong!", Toast.LENGTH_SHORT).show()
-            return
-        }
 
-        mAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Login berhasil
-                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-                    setContentView(R.layout.activity_main)
-                } else {
-                    // Login gagal
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Login gagal. Periksa email dan password Anda.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                for (snapshot in dataSnapshot.children){
+                    val userEmail = snapshot.child("email").getValue(String::class.java)
+                    val userPassword = snapshot.child("password").getValue(String::class.java)
+
+                    if (emailLogin.text.toString() == userEmail && passLogin.text.toString() == userPassword) {
+                        doneLogin = true
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
+
+                if (!doneLogin) Toast.makeText(this@LoginActivity, "Username and Password don't match", Toast.LENGTH_LONG).show()
             }
 
-        //TODO: Sign in with registered acc
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@LoginActivity, "Database side Error!", Toast.LENGTH_LONG).show()
+            }
+        })
 
     }
 }
