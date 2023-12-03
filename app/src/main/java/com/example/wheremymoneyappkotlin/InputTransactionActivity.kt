@@ -7,14 +7,19 @@ import android.text.Layout
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.PopupMenu
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.database.FirebaseDatabase
 
 class InputTransactionActivity : AppCompatActivity() {
+    private lateinit var database: FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_transaction)
 
-        val m_itemForm = findViewById<EditText>(R.id.itemInput).text.toString()
-        val m_priceForm = findViewById<EditText>(R.id.priceInput).text.toString().toDoubleOrNull()
+        database = FirebaseDatabase.getInstance()
+
+
         val m_itemLayout = findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.itemLayout)
         val m_priceLayout = findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.priceLayout)
         val m_inputIncomeButton = findViewById<Button>(R.id.inputIncomeButton)
@@ -26,9 +31,33 @@ class InputTransactionActivity : AppCompatActivity() {
 
         m_inputIncomeButton.setOnClickListener {
 
+            val m_itemForm = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.itemInput).text.toString()
+            val m_priceForm = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.priceInput).text.toString().toDoubleOrNull()
+            if (m_itemForm.isEmpty()) {
+                m_itemLayout.error = "Please input your item"
+                return@setOnClickListener
+            }
+            if (m_priceForm==null) {
+                m_priceLayout.error = "Please input your price"
+                return@setOnClickListener
+            }
 
-            if (m_itemForm.isEmpty()) m_itemLayout.error = "Please input your item"
-            if (m_priceForm==null) m_priceLayout.error = "Please input your item"
+            if (m_priceForm != null) {
+                writeToFirebase(m_itemForm, m_priceForm)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun writeToFirebase(item: String, price: Double){
+        val databaseReference = database.reference.child("transactions")
+        val transactionId = databaseReference.push().key
+        val transactionData = hashMapOf("item" to item, "price" to price)
+
+        if (transactionId != null) {
+            databaseReference.child(transactionId).setValue(transactionData)
         }
     }
 }
+
