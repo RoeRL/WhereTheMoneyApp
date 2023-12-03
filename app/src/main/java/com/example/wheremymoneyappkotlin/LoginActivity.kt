@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var database: FirebaseDatabase
     private lateinit var emailLogin: EditText
     private lateinit var passLogin: EditText
     private lateinit var loginButton: Button
@@ -16,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        database = FirebaseDatabase.getInstance()
 
         emailLogin = findViewById(R.id.emailForm)
         passLogin = findViewById(R.id.passwordForm)
@@ -37,16 +44,32 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun userLoginFunction(){
-        val email = emailLogin.text.toString().trim()
-        val password = passLogin.text.toString().trim()
+        val databaseReference = database.reference.child("user_list")
+
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var doneLogin = false
 
 
-        if (email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this@LoginActivity, "Kolom Login atau Password Kosong!", Toast.LENGTH_SHORT).show()
-            return
-        }
 
-        //TODO: Sign in with registered acc
+                for (snapshot in dataSnapshot.children){
+                    val userEmail = snapshot.child("email").getValue(String::class.java)
+                    val userPassword = snapshot.child("password").getValue(String::class.java)
+
+                    if (emailLogin.text.toString() == userEmail && passLogin.text.toString() == userPassword) {
+                        doneLogin = true
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
+                if (!doneLogin) Toast.makeText(this@LoginActivity, "Username and Password don't match", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@LoginActivity, "Database side Error!", Toast.LENGTH_LONG).show()
+            }
+        })
 
     }
 }
