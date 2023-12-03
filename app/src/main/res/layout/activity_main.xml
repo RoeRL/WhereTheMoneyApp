@@ -111,6 +111,14 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="#FD0000"/>
 
+                <Button
+                    android:id="@+id/budgetButton"
+                    android:text="Budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_margin="10dp"
+
+                    android:backgroundTint="#FFFB00"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

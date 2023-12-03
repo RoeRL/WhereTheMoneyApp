@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var transactions : ArrayList<HistoryTransaction>
     private lateinit var adapter: HistoryTransactionAdapater
     private lateinit var linearLayoutManager : LinearLayoutManager
+    private lateinit var incomeButton : Button
 
     val databaseReferense = FirebaseDatabase.getInstance().getReference("transactions")
 
@@ -76,16 +77,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
 
-        val incomeButton = findViewById<Button>(R.id.incomeButton)
-        val expenseButton = findViewById<Button>(R.id.expenseButton)
+        incomeButton = findViewById(R.id.incomeButton)
 
 
         incomeButton.setOnClickListener {
             val intent = Intent(this, InputTransactionActivity::class.java)
-            startActivity(intent)
-        }
-        expenseButton.setOnClickListener {
-            val intent = Intent(this, ExpenseTransactionActivity::class.java)
             startActivity(intent)
         }
     }
