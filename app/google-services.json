@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "194897760146",
-    "project_id": "wheremymoneyappkotlin",
-    "storage_bucket": "wheremymoneyappkotlin.appspot.com"
+    "project_number": "390221760359",
+    "project_id": "wherethemoney-d8edb",
+    "storage_bucket": "wherethemoney-d8edb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:194897760146:android:610783fa1dc82142ee7b4b",
+        "mobilesdk_app_id": "1:390221760359:android:f1dabeec794ff31dc6d1c2",
         "android_client_info": {
           "package_name": "com.example.wheremymoneyappkotlin"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCCDNLBsLuYg2RiS5kgYgW_4u2I4Ne03jw"
+          "current_key": "AIzaSyCLJLBXqGwlWnWoAcDJWTEBIugbj2MZItQ"
         }
       ],
       "services": {
