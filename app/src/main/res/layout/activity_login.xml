@@ -25,7 +25,7 @@
                 Money"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="50dp"></TextView>
+                android:textSize="45dp"></TextView>
 
         </LinearLayout>
         <androidx.cardview.widget.CardView
@@ -70,11 +70,12 @@
                     android:id="@+id/loginButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="login"/>
-                <TextView
+                    android:text="Login"/>
+                <Button
+                    android:id="@+id/registerButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="register"
+                    android:text="Register"
                     android:layout_marginBottom="28dp"
                     android:textAlignment="center"/>
             </LinearLayout>
