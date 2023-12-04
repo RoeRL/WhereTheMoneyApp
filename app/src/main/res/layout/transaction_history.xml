@@ -11,14 +11,14 @@
         android:layout_height="wrap_content"
         android:text="item"
         android:id="@+id/label"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_marginStart="6dp"
         android:layout_weight="1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_marginEnd="12dp"
         android:id="@+id/price"
         android:text="value"/>

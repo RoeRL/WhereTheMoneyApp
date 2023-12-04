@@ -5,23 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var transactions : ArrayList<HistoryTransaction>
     private lateinit var adapter: HistoryTransactionAdapater
     private lateinit var linearLayoutManager : LinearLayoutManager
-    private lateinit var incomeButton : Button
+    private lateinit var transactionKeys : ArrayList<String>
 
-    val databaseReferense = FirebaseDatabase.getInstance().getReference("transactions")
+    private val databaseReferense = FirebaseDatabase.getInstance().getReference("transactions")
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var balanceValue: TextView
@@ -32,58 +30,62 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         transactions = ArrayList()
-        adapter = HistoryTransactionAdapater(transactions)
-        linearLayoutManager = LinearLayoutManager(this)
+        transactionKeys = ArrayList()
 
-//        transactions = arrayListOf(
-//            HistoryTransaction("Pisang", -40000.00),
-//            HistoryTransaction("Duit", 40000.00),
-//            HistoryTransaction("Gedhang", -90000.00),
-//            HistoryTransaction("Jualan", 30000.00),
-//            HistoryTransaction("Nasipadang", 200000.00),
-//
-//        )
+
+
+        linearLayoutManager = LinearLayoutManager(this)
 
         databaseReferense.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val fetchedTransactions = ArrayList<HistoryTransaction>()
 
-                for (snapshot in dataSnapshot.children){
+
+                for (snapshot in dataSnapshot.children) {
                     val items = snapshot.child("item").getValue(String::class.java) ?: ""
                     val price = snapshot.child("price").getValue(Double::class.java) ?: 0.0
+                    val key = snapshot.key ?: "" // Get the key
 
-                    fetchedTransactions.add(HistoryTransaction(items, price))
+                    fetchedTransactions.add(HistoryTransaction(items, price, key))
+                    transactionKeys.add(key)
                 }
 
                 transactions.clear()
                 transactions.addAll(fetchedTransactions)
 
-                adapter.notifyDataSetChanged()
+
+
+                recyclerView.adapter = adapter
 
                 updateDashboard()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
 
+        adapter = HistoryTransactionAdapater(transactions, transactionKeys) { selectedTransaction, transactionKey ->
+            val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            intent.putExtra("TRANSACTION", selectedTransaction)
+            intent.putExtra("TRANSACTION_KEY", transactionKey)
+            startActivity(intent)
+        }
 
-//        adapter = HistoryTransactionAdapater(transactions)
-//        linearLayoutManager = LinearLayoutManager(this)
-//
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = adapter
 
+        val incomeButton = findViewById<Button>(R.id.incomeButton)
+        val expenseButton = findViewById<Button>(R.id.expenseButton)
 
-        incomeButton = findViewById(R.id.incomeButton)
-
-
+        expenseButton.setOnClickListener {
+            val intent = Intent(this, ExpenseTransactionActivity::class.java)
+            startActivity(intent)
+        }
         incomeButton.setOnClickListener {
             val intent = Intent(this, InputTransactionActivity::class.java)
             startActivity(intent)
-            
         }
     }
 
