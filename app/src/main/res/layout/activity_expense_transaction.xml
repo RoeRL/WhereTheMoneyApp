@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Income"
+                android:text="Expense"
                 android:textSize="38sp"
                 android:textAlignment="center"
                 android:layout_marginBottom="50dp"/>
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="Input Income"
+                    android:text="Expense"
                     android:textSize="24sp"/>
             </RelativeLayout>
         </LinearLayout>
